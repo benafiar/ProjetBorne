@@ -1,0 +1,18 @@
+ <div class="card">
+    <img src="images/Produits/{{ product.filename}}" alt="" class="card-img-top">
+    <div class="card-body">
+       <h5 class="card-body">{{product.nom}}</h5>
+       <div class="card-title text-primary" style="font-weight:bold; font-size:1.5rem;">
+            {{product.prix | number_format (0,',', ' ')}} DT
+            {% if product.promotion %}
+            <div class="text text-warning">Promo ! </div>
+            {% endif %}
+       </div>
+
+       <div>
+            {% for c in product.categories %} 
+            <em class="text-muted text-primary text-italic"># {{ c.getNom()}} </em>
+            {% endfor %}
+       </div>
+    </div>
+</div>

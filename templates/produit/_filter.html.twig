@@ -1,0 +1,11 @@
+{{ form_start(form,{attr: {class: 'filter'}}) }}
+
+{{ form_row (form.q)}}
+<h4>Categeories</h4>
+{{ form_row (form.categorie)}}
+
+<h4>Promotions</h4>
+{{form_row (form.promo)}}
+<button type="submit" class="btn btn-primary w-100">filtrer</button>
+
+{{ form_end (form)}}

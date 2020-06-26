@@ -1,0 +1,117 @@
+easy_admin:
+    site_name: Admin
+    user:
+        display_name: true
+        display_avatar: false
+        name_property_path: 'fullName'
+    design:
+        assets:
+          css:
+            - '/assets/bs-tags/bootstrap-tagsinput.css'
+            - '/assets/smart-wizard/css/smart_wizard.css'
+            - '/assets/smart-wizard/css/smart_wizard_theme_arrows.css'
+            - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css
+            - assets/css/select2.css
+            - assets/css/ct.css
+          js:
+            - assets/js/popper.js
+            - assets/js/bootstrap.js
+            - assets/js/app-style-switcher.js
+            - assets/js/perfect-scrollbar.jquery.min.js
+            - assets/js/feather.js
+            - assets/js/sidebar.js
+            - assets/js/custom.js
+            - '/assets/bs-tags/bootstrap-tagsinput.js'
+            - '/assets/smart-wizard/js/jquery.smartWizard.js'
+        form_theme: 'form/fields.html.twig'
+        menu:
+          - label: "Admin"
+            children:
+              - { entity: 'Admin' ,label: 'Gérer profile', icon: 'file-new' }
+              - { entity: 'Produit' ,label: 'Gérer les produits',icon: 'tag'}
+              - { entity: 'Categorie' ,label: 'Gérer les catégorie',icon: 'user'} 
+              - { entity: 'Ingredient' ,label: 'Gérer les ingrédients',icon: 'user'} 
+
+    entities:
+        Admin:
+            class: App\Entity\Admin
+            label: "Admin"
+            form:
+                fields:
+                    - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-10'}
+                    - {property: 'firstName', label: 'Prénom'}
+                    - {property: 'lastName', label: 'Nom'}
+                    - {property: 'email', label: 'Email'}
+                    - {property: 'password', label: 'Mot De Passe' ,type: "password" }
+                    - {property: 'confirmPassword', label: ' Confirme Mot De Passe' ,type: "password"}
+                    - {property: 'roles', label: ' Role' }
+                   
+            list:
+                actions:
+                    - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
+                    - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
+                title: "Administrateur"
+                fields: [{property: 'firstName', label: 'Nom'}, {property: 'lastName', label: 'Prénom'}, 'email',{property: 'roles', label: ' Role' ,type: "json_array"}]
+                item_permission: 'ROLE_ADMIN'
+
+        Categorie:
+                class: App\Entity\Categorie
+                label: "Categorie"
+                form:
+                    fields:
+                        - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-10'}
+                        - {property: 'nom', label: 'Nom'}
+                        - {property: 'produits', label: 'Produits'}
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
+                        - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
+                    title: "Liste des catégories"
+                    fields: ['nom', {property: 'produits', label: 'produits'}]
+        Ingredient:
+                class: App\Entity\Ingredient
+                label: "Ingredient" 
+                form:
+                    fields:
+                        - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-7'}
+                        - {property: 'nom', label: 'Nom'}
+                        - {property: 'produits', label: 'Produits'}
+                        - {property: 'updatedAt', label: 'Date De Creation'}
+                        - {type: 'group', icon: 'clip', label: 'Attachments', css_class: 'col-lg-5'}
+                        - { property: 'imageFile', type: 'vich_image' }
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
+                        - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
+                    title: "Liste des ingrédients"  
+                    fields: ['nom',{property: 'updatedAt', label: 'Date De Creation'},{property: 'filename', type: 'image', base_path: '/images/Ingredients/', label: 'Image'},'produits']
+        Produit:
+            class: App\Entity\Produit
+            label: "Produit"
+            form:
+                fields:
+                    - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-7'}
+                    - {property: 'nom', label: 'Prénom'}
+                    - {property: 'prix', label: 'Prix'}
+                    - {property: 'promotion', label: 'Promotion'}
+                    - {property: 'categories', label: 'Categories'}
+                    - {property: 'ingredients', label: 'ingredients'}
+                    - {property: 'updatedAt', label: 'Date De Creation'}
+                    - {type: 'group', icon: 'clip', label: 'Attachments', css_class: 'col-lg-5'}
+                    - { property: 'imageFile', type: 'vich_image' }
+            list:
+                actions:
+                    - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
+                    - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
+                title: "Liste des produits"
+                fields: ['nom', 'prix', {property: 'updatedAt', label: 'Date De Creation'}, 'promotion',{property: 'filename', type: 'image', base_path: '/images/Produits/', label: 'Image'}]
+            
+            show:
+                fields:
+                - nom
+                - {property: 'prix', type: 'raw'}
+                - updatedAt
+                - {property: 'filename', type: 'image', base_path: '/images/Produits/'}
+            edit:
+                fields:
+                - '-tags'
