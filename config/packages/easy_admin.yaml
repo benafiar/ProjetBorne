@@ -64,10 +64,13 @@ easy_admin:
                         - {property: 'produits', label: 'Produits'}
                 list:
                     actions:
+                        - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-7'}
                         - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
                         - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
+                        - {type: 'group', icon: 'clip', label: 'Attachments', css_class: 'col-lg-5'}
+                        - { property: 'imageFile', type: 'vich_image' }
                     title: "Liste des catégories"
-                    fields: ['nom', {property: 'produits', label: 'produits'}]
+                    fields: ['id' , 'nom', {property: 'produits', label: 'produits'},{property: 'filename', type: 'image', base_path: '/images/Categories/']
         Ingredient:
                 class: App\Entity\Ingredient
                 label: "Ingredient" 
@@ -75,8 +78,8 @@ easy_admin:
                     fields:
                         - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-7'}
                         - {property: 'nom', label: 'Nom'}
-                        - {property: 'produits', label: 'Produits'}
-                        - {property: 'updatedAt', label: 'Date De Creation'}
+                        - {property: 'produit', label: 'Produits'}
+                        - {property: 'updatedAt', label: 'Date de création'}
                         - {type: 'group', icon: 'clip', label: 'Attachments', css_class: 'col-lg-5'}
                         - { property: 'imageFile', type: 'vich_image' }
                 list:
@@ -84,7 +87,7 @@ easy_admin:
                         - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
                         - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
                     title: "Liste des ingrédients"  
-                    fields: ['nom',{property: 'updatedAt', label: 'Date De Creation'},{property: 'filename', type: 'image', base_path: '/images/Ingredients/', label: 'Image'},'produits']
+                    fields: ['id' , 'nom',{property: 'updatedAt', label: 'Date de création'},{property: 'filename', type: 'image', base_path: '/images/Ingredients/', label: 'Image'}]
         Produit:
             class: App\Entity\Produit
             label: "Produit"
@@ -96,7 +99,7 @@ easy_admin:
                     - {property: 'promotion', label: 'Promotion'}
                     - {property: 'categories', label: 'Categories'}
                     - {property: 'ingredients', label: 'ingredients'}
-                    - {property: 'updatedAt', label: 'Date De Creation'}
+                    - {property: 'updatedAt', label: 'Date de création'}
                     - {type: 'group', icon: 'clip', label: 'Attachments', css_class: 'col-lg-5'}
                     - { property: 'imageFile', type: 'vich_image' }
             list:
@@ -104,7 +107,7 @@ easy_admin:
                     - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
                     - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
                 title: "Liste des produits"
-                fields: ['nom', 'prix', {property: 'updatedAt', label: 'Date De Creation'}, 'promotion',{property: 'filename', type: 'image', base_path: '/images/Produits/', label: 'Image'}]
+                fields: ['id','nom', {property: 'prix', label: 'prix'}, {property: 'updatedAt', label: 'Date de création'}, 'promotion',{property: 'filename', type: 'image', base_path: '/images/Produits/', label: 'Image'}]
             
             show:
                 fields:
