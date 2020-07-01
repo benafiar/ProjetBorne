@@ -17,13 +17,7 @@ class SearchForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('q', TextType::class, [
-                'label'=>false,
-                'required'=>false,
-                'attr'=> [
-                    'placeholder'=>'Rechercher'
-                ]
-            ])
+            
             ->add('categorie', EntityType::class, [
                 'label'=>false,
                 'required'=>false,
@@ -55,4 +49,7 @@ class SearchForm extends AbstractType
     }
     
 }
+
+
+
 
