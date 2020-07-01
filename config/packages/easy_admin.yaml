@@ -70,7 +70,7 @@ easy_admin:
                         - {type: 'group', icon: 'clip', label: 'Attachments', css_class: 'col-lg-5'}
                         - { property: 'imageFile', type: 'vich_image' }
                     title: "Liste des catégories"
-                    fields: ['id' , 'nom', {property: 'produits', label: 'produits'},{property: 'filename', type: 'image', base_path: '/images/Categories/']
+                    fields: ['id' , 'nom', {property: 'produits', label: 'produits'},{property: 'filename', type: 'image', base_path: '/images/Categories/'}]
         Ingredient:
                 class: App\Entity\Ingredient
                 label: "Ingredient" 
