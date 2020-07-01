@@ -8,4 +8,8 @@ vich_uploader:
         
         ingredient_image:
             uri_prefix: /images/Ingredients/
-            upload_destination: '%kernel.project_dir%/public//images/Ingredients/'     
+            upload_destination: '%kernel.project_dir%/public//images/Ingredients/'
+
+        categorie_image:
+            uri_prefix: /images/Categories/
+            upload_destination: '%kernel.project_dir%/public//images/Categories/'     
