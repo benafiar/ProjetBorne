@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="container" style="margin-top: 7rem;">
+<div class="row" >
+    <div class="col-md-3">
+        <a href="" class="btn btn-warning btn-lg ">
+            Continuer<br>la commande
+        </a>
+    </div>
+    <div class="col-md-5">
+        <h3>Validation de votre commande</h3>
+        <div class="d-flex justify-content-center">
+        <h5 >Total à payer: <h5>
+        <p>{{ total| number_format (0,',', ' ') }} DT</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <a href="{{ path('produit') }}" class="btn btn-success btn-lg ">
+            Retour a la liste <br> des produits
+        </a>
+    </div>
+</div
+<div class="row">
+    {% if items | length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantite</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for item in items %}
+                 <tr>
+                    <td>{{ item.product.nom }}</td>
+                    <td>{{ item.product.prix }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ (item.product.prix * item.quantity)| number_format (0,',', ' ')}}</td>
+                    <td>
+                        <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                    </td>
+                </tr>
+                 {% endfor %}
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td>{{ total }}</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+ 
+
+    {% endif %}
+</div>
+</div
+{% endblock %}
