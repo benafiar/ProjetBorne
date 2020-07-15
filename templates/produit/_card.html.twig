@@ -1,18 +1,19 @@
- <div class="card">
-    <img src="images/Produits/{{ product.filename}}" alt="" class="card-img-top">
+<div class="row">
+    <img src="images/Produits/{{ product.filename}}" alt="" class="card-img-top" style="width: 190px;">
     <div class="card-body">
        <h5 class="card-body">{{product.nom}}</h5>
-       <div class="card-title text-primary" style="font-weight:bold; font-size:1.5rem;">
+       <div class="text-center " style="font-weight:bold; font-size:1.5rem;color:#8B542F;">
+          <div class="row">
             {{product.prix | number_format (0,',', ' ')}} DT
             {% if product.promotion %}
-            <div class="text text-warning">Promo ! </div>
+               <div class="float-right text-warning">Promo ! </div>
+                  <h5> {{product.getNouveauPrix  | number_format (0,',', ' ') }} DT</h5> 
             {% endif %}
+          </div>
        </div>
-
-       <div>
-            {% for c in product.categories %} 
-            <em class="text-muted text-primary text-italic"># {{ c.getNom()}} </em>
-            {% endfor %}
-       </div>
+       <hr>
+          <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-success float-right">
+               Commander
+          </a>
     </div>
 </div>

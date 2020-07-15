@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+	<style>
+		.card-body {
+			size: 10em;
+			vertical-align: middle;
+		}
+		.card {
+			margin-left: auto;
+			margin-right: auto
+		}
+		a {
+			align: center;
+		}
+	</style>
+
+	<div class="container" style="margin: 10em;">
+		<h1 class="text-center">Vous allez manger</h1>
+		<br/>
+		<div class="row">
+			<div class="card">
+				<div class="card-body">
+					<i class="fas fa-hamburger fa-10x"></i>		
+					
+				</br>
+				<a href="{{ path('paiement') }}" class="btn btn-warning" id="sr">
+					SUR PLACE
+				</a>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				<i class="fas fa-shopping-bag fa-10x"></i>
+			</br>
+			<a href="{{ path('paiement') }}" class="btn btn-warning" id="ae">
+				A EMPORTER
+			</a>
+		</div>
+	</div>
+</div></div>{% endblock %}

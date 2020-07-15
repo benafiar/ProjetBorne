@@ -3,64 +3,65 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<div class="container" style="margin-top: 7rem;">
-<div class="row" >
-    <div class="col-md-3">
-        <a href="" class="btn btn-warning btn-lg ">
-            Continuer<br>la commande
-        </a>
-    </div>
-    <div class="col-md-5">
-        <h3>Validation de votre commande</h3>
-        <div class="d-flex justify-content-center">
-        <h5 >Total à payer: <h5>
-        <p>{{ total| number_format (0,',', ' ') }} DT</p>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:SeaShell;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+     <a class="navbar-brand" href="#">
+    <img src="/images/icon.png" width="100" height="100" alt="" >
+     </a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <h1 class="text-center " style="color:#8B542F;">
+        Récapitulation de la commande
+      </h1>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="" class="btn btn-danger " style="color:white;">
+                Annuler <br> la commande
+            </a>
         </div>
+        <div class="col-md-6">
+            <div class="d-flex justify-content-center">
+                <h3> Validation de votre commande </h3>
+            </div>
+            <center><h5>Total à payer:{{ total| number_format (0,',', ' ') }}DT</h5></center>
+        </div>
+                <div class="col-md-3">
+                    <a href="{{ path('produit') }}" class="btn btn-success " style="color:white;">
+                        Valider <br> la commande
+                    </a>
+                </div>
+            </div> 
+        </div> 
     </div>
-    <div class="col-md-3">
-        <a href="{{ path('produit') }}" class="btn btn-success btn-lg ">
-            Retour a la liste <br> des produits
-        </a>
-    </div>
-</div
-<div class="row">
-    {% if items | length > 0 %}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Produit</th>
-                    <th>Prix</th>
-                    <th>Quantite</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                 {% for item in items %}
-                 <tr>
-                    <td>{{ item.product.nom }}</td>
-                    <td>{{ item.product.prix }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ (item.product.prix * item.quantity)| number_format (0,',', ' ')}}</td>
-                    <td>
-                        <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                    </td>
-                </tr>
-                 {% endfor %}
-            </tbody>
 
-            <tfoot>
-                <tr>
-                    <td colspan="3" class="text-right">Total:</td>
-                    <td>{{ total }}</td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
- 
+    <div class="row">
+        {% if items | length > 0 %}
+            <table class="table">
+                <tbody>
+                    {% for item in items %}
+                            <td>{{ item.product.nom }}</td>
+                            <td>{{ item.product.prix| number_format (0,',', ' ')}} DT</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ (item.product.prix * item.quantity)| number_format (0,',', ' ')}} DT</td>
+                            <td>
+                                <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-times"></i>
+                                </td>
+                            </td>
+                        </tr>
+                    {% endfor %}
+            
+                </tbody>
+            </table>
+        {% endif %}
 
-    {% endif %}
-</div>
-</div
-{% endblock %}
+</div>          
+ {% endblock %}

@@ -20,5 +20,5 @@ class HomeController extends AbstractController
             'hasError' => $error !== null,
             'username' => $username
         ]);
-    }  
+    }
 }

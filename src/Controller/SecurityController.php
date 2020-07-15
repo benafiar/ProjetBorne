@@ -20,23 +20,7 @@ class SecurityController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-     /**
-     * Permet d'afficher et de gérer le formulaire de connexion
-     * 
-     * @Route("/loginn", name="account_login")
-     * 
-     * @return Response
-     */
-    public function login(AuthenticationUtils $utils)
-    {
-        $error = $utils->getLastAuthenticationError();
-        $username = $utils->getLastUsername();
-
-        return $this->render('security/login.html.twig', [
-            'hasError' => $error !== null,
-            'username' => $username
-        ]);
-    }
+    
     /**
      * Permet de se déconnecter
      * 

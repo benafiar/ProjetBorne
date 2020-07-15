@@ -1,0 +1,10 @@
+<div class="row">
+    <img src="images/Ingredients/{{ ingredient.filename}}" alt="" class="card-img-top" style="width: 190px;">
+    <div class="card-body">
+       <h5 class="card-body">{{ingredient.nom}}</h5>
+       <hr>
+            <a href="{{ path('cartIng_add', {'id': ingredient.id}) }}" class="btn btn-success float-right">
+               Commander
+            </a>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<style>
+   .card-body{
+       size:10em;
+       vertical-align: middle;
+   }
+    .card{
+        margin-left: auto;
+        margin-right: auto
+   }
+   a{
+       align:center;
+   }
+
+</style>
+
+<div class="container"  style="margin: 10em;" >
+     <h3 class="text-center">Choisissez votre moyen de paiement</h3>
+    <br/>
+    <div class="row" >
+    <div class="card">
+        <div class="card-body" >
+            <i class="fas fa-credit-card fa-10x"></i></br>
+            <a href="{{ path('produit') }}" class="btn btn-warning"  style="color: white;" >
+                JE PAYE AVEC CARTE BANCAIRE
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body" >
+            <i class="far fa-money-bill-alt fa-10x"></i></br>
+            <a href="{{ path('produit') }}" class="btn btn-warning" style="color: white;">
+                JE PAYE A LA CAISSE
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body" >
+            <i class="fab fa-cc-diners-club fa-10x"></i></br>
+            <a href="{{ path('produit') }}" class="btn btn-warning" style="color: white;">
+                JE PAYE AVEC TICKET RESTAURANT
+            </a>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

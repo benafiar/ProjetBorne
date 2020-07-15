@@ -27,10 +27,10 @@ easy_admin:
         menu:
           - label: "Admin"
             children:
-              - { entity: 'Admin' ,label: 'Gérer profile', icon: 'file-new' }
-              - { entity: 'Produit' ,label: 'Gérer les produits',icon: 'tag'}
-              - { entity: 'Categorie' ,label: 'Gérer les catégorie',icon: 'user'} 
-              - { entity: 'Ingredient' ,label: 'Gérer les ingrédients',icon: 'user'} 
+              - { entity: 'Admin' ,label: 'Gérer profile' }
+              - { entity: 'Produit' ,label: 'Gérer les produits'}
+              - { entity: 'Categorie' ,label: 'Gérer les catégorie'} 
+              - { entity: 'Ingredient' ,label: 'Gérer les ingrédients'} 
 
     entities:
         Admin:
@@ -48,8 +48,8 @@ easy_admin:
                    
             list:
                 actions:
-                    - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
-                    - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
+                    - {name: 'edit',  css-class: 'btn-btn-secondery'}
+                    - {name: 'delete',  css-class: 'btn-btn-danger'} 
                 title: "Administrateur"
                 fields: [{property: 'firstName', label: 'Nom'}, {property: 'lastName', label: 'Prénom'}, 'email',{property: 'roles', label: ' Role' ,type: "json_array"}]
                 item_permission: 'ROLE_ADMIN'
@@ -59,18 +59,17 @@ easy_admin:
                 label: "Categorie"
                 form:
                     fields:
-                        - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-10'}
+                        - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-7'}
                         - {property: 'nom', label: 'Nom'}
                         - {property: 'produits', label: 'Produits'}
-                list:
-                    actions:
-                        - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-7'}
-                        - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
-                        - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
                         - {type: 'group', icon: 'clip', label: 'Attachments', css_class: 'col-lg-5'}
                         - { property: 'imageFile', type: 'vich_image' }
+                list:
+                    actions:
+                        - {name: 'edit',  css-class: 'btn-btn-secondery'}
+                        - {name: 'delete',  css-class: 'btn-btn-danger'} 
                     title: "Liste des catégories"
-                    fields: ['id' , 'nom', {property: 'produits', label: 'produits'},{property: 'filename', type: 'image', base_path: '/images/Categories/'}]
+                    fields: ['id' , 'nom',{property: 'filename', type: 'image', base_path: '/images/Categories/'}]
         Ingredient:
                 class: App\Entity\Ingredient
                 label: "Ingredient" 
@@ -84,19 +83,20 @@ easy_admin:
                         - { property: 'imageFile', type: 'vich_image' }
                 list:
                     actions:
-                        - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
-                        - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
+                        - {name: 'edit',  css-class: 'btn-btn-secondery'}
+                        - {name: 'delete',  css-class: 'btn-btn-danger'} 
                     title: "Liste des ingrédients"  
-                    fields: ['id' , 'nom',{property: 'updatedAt', label: 'Date de création'},{property: 'filename', type: 'image', base_path: '/images/Ingredients/', label: 'Image'}]
+                    fields: ['id' , 'nom',{property: 'filename', type: 'image', base_path: '/images/Ingredients/', label: 'Image'}]
         Produit:
             class: App\Entity\Produit
             label: "Produit"
             form:
                 fields:
                     - {type: 'group', icon: 'pencil', label: 'Information Générale', css_class: 'col-lg-7'}
-                    - {property: 'nom', label: 'Prénom'}
+                    - {property: 'nom', label: 'Nom'}
                     - {property: 'prix', label: 'Prix'}
                     - {property: 'promotion', label: 'Promotion'}
+                    - {property: 'nouveau_prix', label: 'prix promotion'}
                     - {property: 'categories', label: 'Categories'}
                     - {property: 'ingredients', label: 'ingredients'}
                     - {property: 'updatedAt', label: 'Date de création'}
@@ -104,10 +104,10 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
             list:
                 actions:
-                    - {name: 'edit', icon: 'pencil',  css-class: 'btn-btn-secondery'}
-                    - {name: 'delete', icon: 'trash',  css-class: 'btn-btn-danger'} 
+                    - {name: 'edit',  css-class: 'btn-btn-secondery'}
+                    - {name: 'delete',  css-class: 'btn-btn-danger'} 
                 title: "Liste des produits"
-                fields: ['id','nom', {property: 'prix', label: 'prix'}, {property: 'updatedAt', label: 'Date de création'}, 'promotion',{property: 'filename', type: 'image', base_path: '/images/Produits/', label: 'Image'}]
+                fields: ['id','nom', {property: 'prix', label: 'prix'}, 'promotion',{property: 'filename', type: 'image', base_path: '/images/Produits/', label: 'Image'}]
             
             show:
                 fields:

@@ -4,39 +4,33 @@
  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Connexion à l'administration</title>
+    <title>Inscription de l'administration</title>
     <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <style>
         body {
-            display: flex;
-            justify-content: center;
+            display:flex;
+            justify-content:center;
             height: 100vh;
-        }
-
-        .card {
-            margin-top: 10%;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1 class="my-5">Inscrivez vous sur notre site !</h1>
-
+<div class="col-md-8">
     {{ form_start(form) }}
 
     <div class="row">
-        <div class="col">
+        <div class="col-md-6">
             <div class="alert alert-light">
-                <h2 class="alert-heading">Informations générales</h2>
+                <h3 class="alert-heading">Inscription</h3>
                 <hr>
                <div class="form-group"></div>
-                {{ form_row(form.firstName) }}
-                {{ form_row(form.lastName) }}
-                {{ form_row(form.email) }}
-                {{ form_row(form.password) }}
-                {{ form_row(form.confirmPassword) }}
+                {{ form_row(form.firstName , { 'label': 'Prénom' }) }}
+                {{ form_row(form.lastName, { 'label': 'Nom' }) }}
+                {{ form_row(form.email, { 'label': 'Email' }) }}
+                {{ form_row(form.password, { 'label': 'Mot de passe' }) }}
+                {{ form_row(form.confirmPassword, { 'label': 'Confirmer mot de passe' }) }}
                 <br>
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-check"></i> Confirmez l'inscription
@@ -46,6 +40,7 @@
     </div>
         
     {{ form_end(form) }}
-    
+
 </div>
+
 </body>

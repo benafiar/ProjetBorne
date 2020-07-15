@@ -3,20 +3,58 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:SeaShell;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+     <a class="navbar-brand" href="#">
+    <img src="/images/icon.png" width="100" height="100" alt="" >
+     </a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <h1 class="text-center " style="color:#8B542F;">
+        Nos Menus
+      </h1>
+    </ul>
+    <form class="form my-2 my-lg-0">
+      <a class="btn btn-danger w-100" type="submit" ">Retour</a><br><br>
+      <button class="btn btn-warning my-2 my-sm-0" type="submit" style="color: white;">Promotions</button>
+    </form>
+  </div>
+</nav>
     <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            {% include "produit/_filter.html.twig" with {form: form} only %}
-        </div>
-        <div class="col-md-9">
-            <div class="grid">
-                {% for product in products %}
-                    {% include "produit/_card.html.twig" with {product: product} only %}
+        <div class="row">
+            <div class="col-md-3" >
+                {{ form_start(form,{attr: {class:'filter'}}) }}
+                {% for categorie in categories %}
+                    <img src="images/Categories/{{ categorie.filename}}" alt="" style="width: 100px;">
+                    <fieldset class="form-group">
+                    <div id="categorie">
+                    <div class="form-check" >
+                        <input type="checkbox" name="categorie[]" class="form-check-input" value="{{categorie.id}}">
+                        <label class="form-check-label" for="categorie_{{categorie.id}}">{{categorie.nom}}</label>
+                    </div>
+                    </div>
+                    <fieldset>
                 {% endfor %}
+        
+                <h4>Promotions</h4>
+                {{form_row (form.promo)}}
+                <button type="submit" class="btn btn-primary w-50">Rechercher</button>
+                {{ form_end (form)}}
+            </div>
+            <div class="col-md-9">
+        
+                <div class="grid">
+                    {% for product in products %}
+                        {% include "produit/_card.html.twig" with {product: product} only %}
+                    {% endfor %}
+                    
+                </div>
             </div>
         </div>
+       <center> <a class="btn btn-secondary my-2 my-lg-0" href="{{path("cart_index")}}" ">Ma commande</a>  </center> 
     </div>
-        
-    </div>
+    
+    
 {% endblock %}

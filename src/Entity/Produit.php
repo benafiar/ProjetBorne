@@ -52,11 +52,6 @@ class Produit
     private $prix;
 
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="produit", orphanRemoval=true)
-     * @Assert\Valid()
-     */
-    private $images;
 
     /**
      * @ORM\Column(type="datetime")
@@ -90,6 +85,11 @@ class Produit
      * @ORM\OneToMany(targetEntity=Ingredient::class, mappedBy="produit")
      */
     private $ingredients;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $nouveau_prix;
 
 
 
@@ -144,36 +144,6 @@ class Produit
     }
 
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setProduit($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-            // set the owning side to null (unless already changed)
-            if ($image->getProduit() === $this) {
-                $image->setProduit(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -300,6 +270,18 @@ class Produit
                 $ingredient->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNouveauPrix(): ?float
+    {
+        return $this->nouveau_prix;
+    }
+
+    public function setNouveauPrix(?float $nouveau_prix): self
+    {
+        $this->nouveau_prix = $nouveau_prix;
 
         return $this;
     }
