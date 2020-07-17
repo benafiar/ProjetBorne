@@ -249,7 +249,7 @@
                 columns: [
                     {% for field in fields %}
                     {
-                        title: '{{ field.label }}',
+                        title: '{{ field.label }}', 
                         field: '{{ field.fieldName }}',
                         sortable: true,
                         formatter: function (data, row, index) {
